@@ -5,90 +5,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>TP Cybersécurité – Maquette de connexion</title>
+
+    <title>connexion instagram</title>
+
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
     <main class="page">
 
-        <div class="language">
-            Français (France) ﹀
+        <div class="language-container">
+            <label class="visually-hidden" for="language">
+                Choisir une langue
+            </label>
+
+            <select id="language" class="language">
+                <option value="fr">Français (France)</option>
+                <option value="ar">العربية</option>
+                <option value="en">English (UK)</option>
+                <option value="es">Español</option>
+            </select>
         </div>
 
-        <div class="logo"
-             role="img"
-             aria-label="Logo de démonstration"></div>
+        <div class="logo" role="img" aria-label="Logo Instagram de démonstration">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+                <defs>
+                    <linearGradient id="instagram-gradient"
+                        x1="0" y1="1" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#ffdc00"/>
+                        <stop offset="30%" stop-color="#ff543e"/>
+                        <stop offset="60%" stop-color="#c837ab"/>
+                        <stop offset="100%" stop-color="#7638fa"/>
+                    </linearGradient>
+                </defs>
 
-      
+                <rect x="9" y="9" width="82" height="82"
+                    rx="23" fill="none"
+                    stroke="url(#instagram-gradient)"
+                    stroke-width="8"/>
 
-        <form class="login-form"
-              id="login-form"
-              novalidate>
+                <circle cx="50" cy="50" r="20"
+                    fill="none"
+                    stroke="url(#instagram-gradient)"
+                    stroke-width="8"/>
 
-            <label class="visually-hidden" for="contact">
-                Adresse Gmail ou numéro de téléphone
-            </label>
+                <circle cx="74" cy="26" r="5"
+                    fill="#c837ab"/>
+            </svg>
+        </div>
 
-            <input
-                type="text"
-                id="contact"
-                name="contact"
-                inputmode="text"
-                autocomplete="off"
-                maxlength="254"
-                placeholder="Adresse Gmail ou numéro de téléphone"
-                aria-label="Adresse e-mail ou numéro fictif"
-                required
-            >
+        <form class="login-form" id="login-form" novalidate>
+            <div class="field">
+                <label class="visually-hidden" for="contact">
+                    Identifiant fictif
+                </label>
 
-            <label class="visually-hidden" for="username">
-                Nom d'utilisateur
-            </label>
+                <input
+                    type="text"
+                    id="contact"
+                    name="contact"
+                    maxlength="254"
+                    autocomplete="off"
+                    placeholder="Nom de profil, e-mail ou numéro de téléphone"
+                    aria-label="Identifiant fictif"
+                    required
+                >
 
-            <input
-                type="text"
-                id="username"
-                name="username"
-                autocomplete="off"
-                maxlength="50"
-                placeholder="Nom d'utilisateur"
-                aria-label="Nom d'utilisateur fictif"
-                required
-            >
+                <button
+                    type="button"
+                    class="clear-button"
+                    data-clear="contact"
+                    aria-label="Vider le champ identifiant"
+                    hidden>×</button>
+            </div>
 
-            <button
-                type="submit"
-                class="login-button"
-                id="submit">
+            <div class="field">
+                <label class="visually-hidden" for="username">
+                    Mot de passe fictif
+                </label>
+
+                <input
+                    type="password"
+                    id="username"
+                    name="username"
+                    maxlength="50"
+                    autocomplete="off"
+                    placeholder="Mot de passe"
+                    aria-label="Mot de passe"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="toggle-password"
+                    aria-label="Afficher le mot de passe"
+                    aria-pressed="false">👁</button>
+
+                <button
+                    type="button"
+                    class="clear-button"
+                    data-clear="username"
+                    aria-label="Vider le champ mot de passe"
+                    hidden>×</button>
+            </div>
+
+            <button type="submit" class="login-button" id="submit">
                 Se connecter
             </button>
-
         </form>
 
-        <p id="message"
-           role="status"
-           aria-live="polite"
-           hidden></p>
+        <p id="message" role="status" aria-live="polite" hidden></p>
 
         <a href="#" class="forgot" id="forgotLink">
             Mot de passe oublié ?
         </a>
 
-        <button
-            type="button"
-            class="create-account"
-            id="createAccount">
-            Créer un nouveau compte
-        </button>
+        <div class="bottom-section">
+            <button
+                type="button"
+                class="create-account"
+                id="createAccount">
+                Créer un nouveau compte
+            </button>
 
-        <div class="meta" aria-label="Meta">
-            ∞ Meta
+            <div class="meta" aria-label="Meta">
+                <span class="meta-symbol">∞</span> Meta
+            </div>
         </div>
 
-       
     </main>
-
-    <script src="script.js" defer></script>
 </body>
 </html>

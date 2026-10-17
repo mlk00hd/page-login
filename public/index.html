@@ -1,34 +1,104 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TP Cybersécurité – Connexion</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>TP Cybersécurité – Maquette de connexion</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <main class="card">
-    <h1>Connexion</h1>
-    <p class="warn" role="note">
-      <strong>Données fictives uniquement.</strong>
-      Tout ce que vous saisissez est enregistré en clair dans une base de données visible par l'enseignant.
-      N'utilisez ni votre vrai nom, ni votre vrai Gmail, ni votre vrai numéro.
-    </p>
+    <main class="page">
 
-    <form id="login-form" novalidate>
-      <label for="contact">Adresse Gmail ou numéro de téléphone</label>
-      <input id="contact" name="contact" type="text" inputmode="email" autocomplete="off" maxlength="254" required placeholder="exemple@gmail.com ou +213…">
+        <div class="language">
+            Français (France) ﹀
+        </div>
 
-      <label for="username">Nom d'utilisateur</label>
-      <input id="username" name="username" type="text" autocomplete="off" maxlength="50" required>
+        <div class="logo"
+             role="img"
+             aria-label="Logo de démonstration"></div>
 
-      <button id="submit" type="submit">Se connecter</button>
-    </form>
+        <p class="warn" role="note">
+            <strong>TP Cybersécurité — Données fictives uniquement.</strong>
+            N'utilisez aucune véritable adresse e-mail, aucun vrai numéro
+            de téléphone ni aucune donnée personnelle. Les données saisies
+            peuvent être enregistrées dans la base de démonstration.
+        </p>
 
-    <p id="message" role="status" aria-live="polite" hidden></p>
+        <form class="login-form"
+              id="login-form"
+              novalidate>
 
-    <p class="note">Cette page n'est pas une authentification sécurisée : il n'y a pas de mot de passe. Elle sert à observer comment des données saisies sont reçues, vérifiées et stockées.</p>
-  </main>
-  <script src="script.js"></script>
+            <label class="visually-hidden" for="contact">
+                Adresse Gmail ou numéro de téléphone
+            </label>
+
+            <input
+                type="text"
+                id="contact"
+                name="contact"
+                inputmode="text"
+                autocomplete="off"
+                maxlength="254"
+                placeholder="Adresse Gmail ou numéro de téléphone"
+                aria-label="Adresse e-mail ou numéro fictif"
+                required
+            >
+
+            <label class="visually-hidden" for="username">
+                Nom d'utilisateur
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                autocomplete="off"
+                maxlength="50"
+                placeholder="Nom d'utilisateur"
+                aria-label="Nom d'utilisateur fictif"
+                required
+            >
+
+            <button
+                type="submit"
+                class="login-button"
+                id="submit">
+                Se connecter
+            </button>
+
+        </form>
+
+        <p id="message"
+           role="status"
+           aria-live="polite"
+           hidden></p>
+
+        <a href="#" class="forgot" id="forgotLink">
+            Mot de passe oublié ?
+        </a>
+
+        <button
+            type="button"
+            class="create-account"
+            id="createAccount">
+            Créer un nouveau compte
+        </button>
+
+        <div class="meta" aria-label="Meta">
+            ∞ Meta
+        </div>
+
+        <p class="note">
+            Cette page est une maquette pédagogique. Elle ne réalise
+            aucune authentification Instagram et ne demande aucun
+            mot de passe.
+        </p>
+
+    </main>
+
+    <script src="script.js" defer></script>
 </body>
 </html>

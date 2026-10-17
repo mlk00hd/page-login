@@ -59,7 +59,7 @@ togglePassword.addEventListener('click', () => {
         String(isPassword)
     );
 
-    togglePassword.textContent = isPassword ? '👁' : '◉';
+    togglePassword.textContent = isPassword ? '⊙' : '◉';
 });
 
 form.addEventListener('submit', async (e) => {
@@ -69,22 +69,31 @@ form.addEventListener('submit', async (e) => {
     const passwordValue = password.value;
 
     if (!contactValue || !passwordValue.trim()) {
-        show('Remplissez les deux champs.');
+        show('Remplissez les deux champs de la maquette.');
         return;
     }
 
-    
-    
+    /*
+     * Maquette pédagogique :
+     * aucune donnée saisie n'est envoyée ni enregistrée.
+     */
+    show(
+        'Démonstration uniquement : aucune connexion réelle et aucune donnée transmise.'
+    );
 });
 
 forgotLink.addEventListener('click', (e) => {
     e.preventDefault();
 
-    
+    show(
+        'Maquette pédagogique : aucune récupération de compte n’est configurée.'
+    );
 });
 
 createAccount.addEventListener('click', () => {
-    
+    show(
+        'Maquette pédagogique : aucune inscription réelle n’est effectuée.'
+    );
 });
 
 document.getElementById('language').addEventListener('change', (e) => {

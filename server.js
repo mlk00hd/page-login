@@ -57,7 +57,7 @@ app.post('/api/login', loginLimiter, async (req, res) => {
     if (success) {
       return res.json({ ok: true, message: 'Connexion réussie. Votre tentative a été enregistrée dans la base MySQL.' });
     }
-    return res.status(401).json({ ok: false, message: 'Échec : contact ou nom d\'utilisateur incorrect. Votre tentative a été enregistrée.' });
+    return res.status(401).json({ ok: false, message: 'Échec : contact ou nom d\'utilisateur incorrect.' });
   } catch (err) {
     // On journalise uniquement le code d'erreur, jamais les données saisies.
     console.error('Erreur base de données :', err.code || 'UNKNOWN');

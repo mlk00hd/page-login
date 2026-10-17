@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP Cybersécurité – Connexion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Connexion</h1>
+    <p class="warn" role="note">
+      <strong>Données fictives uniquement.</strong>
+      Tout ce que vous saisissez est enregistré en clair dans une base de données visible par l'enseignant.
+      N'utilisez ni votre vrai nom, ni votre vrai Gmail, ni votre vrai numéro.
+    </p>
+
+    <form id="login-form" novalidate>
+      <label for="contact">Adresse Gmail ou numéro de téléphone</label>
+      <input id="contact" name="contact" type="text" inputmode="email" autocomplete="off" maxlength="254" required placeholder="exemple@gmail.com ou +213…">
+
+      <label for="username">Nom d'utilisateur</label>
+      <input id="username" name="username" type="text" autocomplete="off" maxlength="50" required>
+
+      <button id="submit" type="submit">Se connecter</button>
+    </form>
+
+    <p id="message" role="status" aria-live="polite" hidden></p>
+
+    <p class="note">Cette page n'est pas une authentification sécurisée : il n'y a pas de mot de passe. Elle sert à observer comment des données saisies sont reçues, vérifiées et stockées.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

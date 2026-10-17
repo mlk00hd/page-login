@@ -1,11 +1,11 @@
-
 :root {
-    --page-bg: #1c1c1c;
+    --page-bg: #1f1f1f;
     --text: #f5f5f5;
-    --muted: #a8a8ad;
+    --muted: #a8a8a8;
     --border: #494949;
-    --blue: #0866e8;
-    --blue-outline: #5599f5;
+    --blue: #0064e0;
+    --blue-hover: #0b5ac0;
+    --blue-outline: #4f8de8;
 }
 
 * {
@@ -27,18 +27,20 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* ===== Mesures calquées sur la capture (772 x 1536) ===== */
+
 .page {
     min-height: 100vh;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5.2vh 4% 2.5vh;
+    padding: 72px 7.5% 18px;          /* 72px du haut, ~58px latéraux */
 }
 
 .language-container {
     position: relative;
-    margin-bottom: 20vh;
+    margin-bottom: 166px;             /* langue -> logo : 166px */
 }
 
 .language {
@@ -74,10 +76,10 @@ body {
 }
 
 .logo {
-    width: 112px;
-    height: 112px;
+    width: 118px;                     /* logo 118px */
+    height: 118px;
     flex-shrink: 0;
-    margin-bottom: 25vh;
+    margin-bottom: 197px;             /* logo -> champ 1 : 197px */
 }
 
 .logo svg {
@@ -88,23 +90,23 @@ body {
 
 .login-form {
     width: 100%;
-    max-width: 710px;
+    max-width: 656px;                 /* largeur réelle mesurée : ~656px */
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 24px;                        /* écart entre champs : 24px */
 }
 
 .field {
     position: relative;
     width: 100%;
-    height: 116px;
+    height: 116px;                    /* hauteur champ : 116px */
 }
 
 .field input {
     width: 100%;
     height: 100%;
     border: 2px solid var(--border);
-    border-radius: 32px;
+    border-radius: 30px;
     background: transparent;
     color: var(--text);
     padding: 0 65px 0 30px;
@@ -147,10 +149,11 @@ body {
 
 .login-button {
     width: 100%;
+    height: 86px;                     /* hauteur bouton : 86px */
     min-height: 86px;
     border: none;
     border-radius: 50px;
-    background: var(--blue);
+    background: var(--blue);          /* #0064e0 mesuré */
     color: white;
     font-size: 25px;
     font-weight: 600;
@@ -158,7 +161,7 @@ body {
 }
 
 .login-button:hover {
-    background: #1877f2;
+    background: var(--blue-hover);
 }
 
 .login-button:disabled {
@@ -168,7 +171,7 @@ body {
 
 #message {
     width: 100%;
-    max-width: 710px;
+    max-width: 656px;
     margin-top: 16px;
     padding: 12px 16px;
     border-radius: 14px;
@@ -188,7 +191,7 @@ body {
 
 .forgot {
     display: block;
-    margin-top: 42px;
+    margin-top: 47px;                 /* bouton -> 'oublié' : 47px */
     color: var(--text);
     text-decoration: none;
     text-align: center;
@@ -202,9 +205,8 @@ body {
 
 .bottom-section {
     width: 100%;
-    max-width: 710px;
-    margin-top: auto;
-    padding-top: 50px;
+    max-width: 656px;
+    margin-top: auto;                 /* grand espace flexible (344px sur la capture) */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -212,7 +214,7 @@ body {
 
 .create-account {
     width: 100%;
-    min-height: 88px;
+    min-height: 84px;                 /* bouton contour : ~84px */
     border: 2px solid var(--blue-outline);
     border-radius: 50px;
     background: transparent;
@@ -231,7 +233,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 7px;
-    margin-top: 35px;
+    margin-top: 39px;                 /* bouton contour -> Meta : 39px */
     font-size: 28px;
     color: #eeeeee;
 }
@@ -254,102 +256,58 @@ body {
     border: 0;
 }
 
-@media (max-width: 600px) {
-    .page {
-        padding: 5.2vh 4% 2.5vh;
-    }
-
-    .language-container {
-        margin-bottom: 20vh;
-    }
-
-    .logo {
-        width: 112px;
-        height: 112px;
-        margin-bottom: 25vh;
-    }
-
-    .login-form {
-        gap: 24px;
-    }
-
-    .field {
-        height: 76px;
-    }
-
-    .field input {
-        border-radius: 29px;
-        padding-left: 30px;
-        padding-right: 65px;
-        font-size: clamp(15px, 3.3vw, 21px);
-    }
-
-    .login-button {
-        min-height: 72px;
-        font-size: 20px;
-    }
-
-    .forgot {
-        margin-top: 42px;
-        font-size: 19px;
-    }
-
-    .bottom-section {
-        padding-top: 50px;
-    }
-
-    .create-account {
-        min-height: 72px;
-        font-size: 18px;
-    }
-
-    .meta {
-        margin-top: 30px;
-        font-size: 24px;
-    }
-
-    .meta-symbol {
-        font-size: 34px;
-    }
-}
-
+/* Petits écrans (hauteur réduite) : proportions resserrées */
 @media (max-height: 750px) {
+    .page {
+        padding-top: 40px;
+    }
+
     .language-container {
-        margin-bottom: 9vh;
+        margin-bottom: 80px;
     }
 
     .logo {
         width: 88px;
         height: 88px;
-        margin-bottom: 10vh;
+        margin-bottom: 90px;
+    }
+
+    .login-form {
+        gap: 16px;
     }
 
     .field {
         height: 64px;
     }
 
-    .login-form {
-        gap: 14px;
+    .field input {
+        font-size: 17px;
+        border-radius: 22px;
     }
 
     .login-button {
+        height: 58px;
         min-height: 58px;
+        font-size: 20px;
     }
 
     .forgot {
         margin-top: 25px;
-    }
-
-    .bottom-section {
-        padding-top: 30px;
+        font-size: 19px;
     }
 
     .create-account {
         min-height: 58px;
+        font-size: 18px;
     }
 
     .meta {
-        margin-top: 20px;
+        margin-top: 24px;
+        font-size: 24px;
+    }
+
+    .meta-symbol {
+        font-size: 34px;
     }
 }
 

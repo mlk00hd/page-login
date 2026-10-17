@@ -7,72 +7,93 @@ const msg = document.getElementById('message');
 const forgotLink = document.getElementById('forgotLink');
 const createAccount = document.getElementById('createAccount');
 
-function show(text, ok) {
+const contact = document.getElementById('contact');
+const password = document.getElementById('username');
+const togglePassword = document.querySelector('.toggle-password');
+const clearButtons = document.querySelectorAll('[data-clear]');
+
+function show(text, ok = false) {
     msg.textContent = text;
     msg.className = ok ? 'ok' : 'err';
     msg.hidden = false;
 }
 
+function updateClearButton(input) {
+    const clearButton = document.querySelector(
+        `[data-clear="${input.id}"]`
+    );
+
+    if (clearButton) {
+        clearButton.hidden = input.value.length === 0;
+    }
+}
+
+[contact, password].forEach((input) => {
+    input.addEventListener('input', () => {
+        updateClearButton(input);
+    });
+});
+
+clearButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const input = document.getElementById(button.dataset.clear);
+
+        input.value = '';
+        updateClearButton(input);
+        input.focus();
+    });
+});
+
+togglePassword.addEventListener('click', () => {
+    const isPassword = password.type === 'password';
+
+    password.type = isPassword ? 'text' : 'password';
+
+    togglePassword.setAttribute(
+        'aria-label',
+        isPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'
+    );
+
+    togglePassword.setAttribute(
+        'aria-pressed',
+        String(isPassword)
+    );
+
+    togglePassword.textContent = isPassword ? '👁' : '◉';
+});
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const contact = form.elements.contact.value.trim();
-    const username = form.elements.username.value.trim();
+    const contactValue = contact.value.trim();
+    const passwordValue = password.value;
 
-    if (!contact || !username) {
-        show(
-            'Remplissez les deux champs avec des données fictives.',
-            false
-        );
+    if (!contactValue || !passwordValue.trim()) {
+        show('Remplissez les deux champs.');
         return;
     }
 
-    btn.disabled = true;
-    btn.textContent = 'Vérification…';
-
-    try {
-        const res = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                contact,
-                username
-            })
-        });
-
-        const data = await res.json().catch(() => ({}));
-
-        show(
-            data.message || 'Réponse inattendue du serveur.',
-            res.ok && data.ok === true
-        );
-
-    } catch (_err) {
-        show(
-            'Impossible de joindre le serveur du TP. Vérifiez qu’il est démarré.',
-            false
-        );
-
-    } finally {
-        btn.disabled = false;
-        btn.textContent = 'Se connecter';
-    }
+    
+    
 });
 
 forgotLink.addEventListener('click', (e) => {
     e.preventDefault();
 
-    show(
-        'Maquette pédagogique : aucune récupération de compte n’est configurée.',
-        false
-    );
+    
 });
 
 createAccount.addEventListener('click', () => {
-    show(
-        'Maquette pédagogique : aucune inscription réelle n’est effectuée.',
-        false
-    );
+    
+});
+
+document.getElementById('language').addEventListener('change', (e) => {
+    const languages = {
+        fr: 'Langue sélectionnée : Français (France).',
+        ar: 'Langue sélectionnée : العربية.',
+        en: 'Selected language: English (UK).',
+        es: 'Idioma seleccionado: Español.'
+    };
+
+    show(languages[e.target.value]);
 });

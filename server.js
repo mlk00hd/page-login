@@ -18,13 +18,20 @@ const loginLimiter = rateLimit({
   max: 10,
   standardHeaders: true,
   legacyHeaders: false,
-  message: { ok: false, message: 'Trop de tentatives. Réessayez dans quelques minutes.' }
+  message: { ok: false, message: ' ' }
 });
+// Nom d'utilisateur : 1 à 30 caractères, lettres, chiffres, "." et "_",
+// sans espace, sans point au début/à la fin, sans deux points d'affilée
+const USERNAME_RE = /^(?!\.)(?!.*\.\.)(?!.*\.$)[A-Za-z0-9._]{1,30}$/;
 
-const GMAIL_RE = /^[A-Za-z0-9._%+-]{1,64}@gmail\.com$/i;
-const PHONE_RE = /^\+?[0-9]{8,15}$/;
-const USERNAME_RE = /^[\p{L}\p{N} ._-]{2,50}$/u;
+// Email : format standard, longueur max 254
+const EMAIL_RE = /^(?=.{1,254}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
 
+// Téléphone : format international E.164 (+ puis 8 à 15 chiffres, sans 0 initial)
+const PHONE_RE = /^\+[1-9][0-9]{7,14}$/;
+
+// Mot de passe : 6 caractères minimum (Instagram) ; ici 8 pour être plus sûr
+const PASSWORD_RE = /^.{8,64}$/;
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 app.post('/api/login', loginLimiter, async (req, res) => {
@@ -34,10 +41,10 @@ app.post('/api/login', loginLimiter, async (req, res) => {
   // Validation côté serveur
   const contactOk = contact.length <= 254 && (GMAIL_RE.test(contact) || PHONE_RE.test(contact));
   if (!contactOk) {
-    return res.status(400).json({ ok: false, message: 'Saisissez une adresse Gmail valide ou un numéro de téléphone (ex. +213550000001).' });
+    return res.status(400).json({ ok: false, message: ' ' });
   }
   if (!USERNAME_RE.test(username)) {
-    return res.status(400).json({ ok: false, message: 'Nom d\'utilisateur invalide (2 à 50 caractères : lettres, chiffres, espace, point, tiret).' });
+    return res.status(400).json({ ok: false, message: ' ' });
   }
 
   try {

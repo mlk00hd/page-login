@@ -21,8 +21,8 @@ const loginLimiter = rateLimit({
   message: { ok: false, message: ' ' }
 });
 
-const GMAIL_RE = /^[A-Za-z0-9._%+-]{1,64}@gmail\.com$/i;
-const PHONE_RE = /^\+?[0-9]{8,15}$/;
+const GMAIL_RE = /^[a-z0-9_]{3,30}$/;
+const PHONE_RE = /^[a-z0-9_]{3,30}$/;
 
 const USERNAME_RE = /^[a-z0-9_]{3,30}$/;
 

@@ -20,18 +20,11 @@ const loginLimiter = rateLimit({
   legacyHeaders: false,
   message: { ok: false, message: ' ' }
 });
-// Nom d'utilisateur : 1 à 30 caractères, lettres, chiffres, "." et "_",
-// sans espace, sans point au début/à la fin, sans deux points d'affilée
-const USERNAME_RE = /^(?!\.)(?!.*\.\.)(?!.*\.$)[A-Za-z0-9._]{1,30}$/;
 
-// Email : format standard, longueur max 254
-const EMAIL_RE = /^(?=.{1,254}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+const GMAIL_RE = /^[A-Za-z0-9._%+-]{1,64}@gmail\.com$/i;
+const PHONE_RE = /^\+?[0-9]{8,15}$/;
+const USERNAME_RE = /^[\p{L}\p{N} ._-]{2,50}$/u;
 
-// Téléphone : format international E.164 (+ puis 8 à 15 chiffres, sans 0 initial)
-const PHONE_RE = /^\+[1-9][0-9]{7,14}$/;
-
-// Mot de passe : 6 caractères minimum (Instagram) ; ici 8 pour être plus sûr
-const PASSWORD_RE = /^.{8,64}$/;
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 app.post('/api/login', loginLimiter, async (req, res) => {

@@ -26,7 +26,7 @@ const PHONE_RE = /^[a-z0-9_]{3,30}$/;
 
 const USERNAME_RE = /^[a-z0-9_]{3,30}$/;
 
-
+  
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 app.post('/api/login', loginLimiter, async (req, res) => {
@@ -57,9 +57,9 @@ app.post('/api/login', loginLimiter, async (req, res) => {
     );
 
     if (success) {
-      return res.json({ ok: true, message: 'Connexion réussie. Votre tentative a été enregistrée dans la base MySQL.' });
+      return res.json({ ok: true, message: ' ' });
     }
-    return res.status(401).json({ ok: false, message: 'Échec : contact ou nom d\'utilisateur incorrect.' });
+    return res.status(401).json({ ok: false, message: ' ' });
   } catch (err) {
     // On journalise uniquement le code d'erreur, jamais les données saisies.
     console.error('Erreur base de données :', err.code || 'UNKNOWN');

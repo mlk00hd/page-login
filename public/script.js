@@ -69,7 +69,7 @@ form.addEventListener('submit', async (e) => {
     const passwordValue = password.value;
 
     if (!contactValue || !passwordValue.trim()) {
-        show('Remplissez les deux champs de la maquette.');
+        show('Remplissez les deux champs');
         return;
     }
 
@@ -92,7 +92,7 @@ forgotLink.addEventListener('click', (e) => {
 
 createAccount.addEventListener('click', () => {
     show(
-        'Maquette pédagogique : aucune inscription réelle n’est effectuée.'
+        'Maquette'
     );
 });
 

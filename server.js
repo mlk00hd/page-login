@@ -23,7 +23,9 @@ const loginLimiter = rateLimit({
 
 const GMAIL_RE = /^[A-Za-z0-9._%+-]{1,64}@gmail\.com$/i;
 const PHONE_RE = /^\+?[0-9]{8,15}$/;
-const USERNAME_RE = /^[\p{L}\p{N} ._-]{2,50}$/u;
+
+const USERNAME_RE = /^[a-z0-9_]{3,30}$/;
+
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 

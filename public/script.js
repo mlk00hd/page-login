@@ -63,7 +63,7 @@ togglePassword.addEventListener('click', () => {
         String(isPassword)
     );
 
-    togglePassword.textContent = isPassword ? '⊙' : '◉';
+    togglePassword.textContent = isPassword ? 'x' : '◉';
 });
 
 form.addEventListener('submit', async (e) => {

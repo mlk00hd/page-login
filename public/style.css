@@ -359,3 +359,8 @@ body {
         transition: background-color 0.15s;
     }
 }
+
+/* Supprime le fond rouge des messages d'erreur tout en conservant leur texte. */
+#message.err {
+    background: transparent;
+}

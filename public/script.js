@@ -63,7 +63,7 @@ togglePassword.addEventListener('click', () => {
         String(isPassword)
     );
 
-    togglePassword.textContent = isPassword ? 'x' : '◉';
+    togglePassword.textContent = isPassword ? '⊙' : '◉';
 });
 
 form.addEventListener('submit', async (e) => {
@@ -94,17 +94,17 @@ form.addEventListener('submit', async (e) => {
         const data = await response.json().catch(() => ({}));
 
         if (!response.ok) {
-            show(data.message || 'Erreur lors de la connexion.', false);
+            show(data.message || ' ', false);
             return;
         }
 
-        show(data.message || 'Connexion réussie.', true);
+        show(data.message || ' ', true);
         form.reset();
         [contact, password].forEach((input) => {
             updateClearButton(input);
         });
     } catch (error) {
-        show('Impossible de joindre le serveur. Réessayez.', false);
+        show(' ', false);
     } finally {
         setBusy(false);
     }
@@ -114,12 +114,12 @@ forgotLink.addEventListener('click', (e) => {
     e.preventDefault();
 
     show(
-        'Maquette pédagogique : aucune récupération de compte n’est configurée.'
+        ' '
     );
 });
 
 createAccount.addEventListener('click', () => {
-    show('Maquette pédagogique : création de compte non disponible.');
+    show(' ');
 });
 
 document.getElementById('language').addEventListener('change', (e) => {
@@ -131,4 +131,4 @@ document.getElementById('language').addEventListener('change', (e) => {
     };
 
     show(languages[e.target.value]);
-}); redonne le correcte
+});

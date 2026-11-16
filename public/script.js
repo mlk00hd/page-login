@@ -1,4 +1,3 @@
-
 'use strict';
 
 const form = document.getElementById('login-form');
@@ -16,6 +15,11 @@ function show(text, ok = false) {
     msg.textContent = text;
     msg.className = ok ? 'ok' : 'err';
     msg.hidden = false;
+}
+
+function setBusy(isBusy) {
+    btn.disabled = isBusy;
+    btn.textContent = isBusy ? 'Connexion...' : 'Se connecter';
 }
 
 function updateClearButton(input) {
@@ -66,20 +70,44 @@ form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const contactValue = contact.value.trim();
-    const passwordValue = password.value;
+    const passwordValue = password.value.trim();
 
-    if (!contactValue || !passwordValue.trim()) {
+    if (!contactValue || !passwordValue) {
         show('Remplissez les deux champs');
         return;
     }
 
-    /*
-     * Maquette pédagogique :
-     * aucune donnée saisie n'est envoyée ni enregistrée.
-     */
-    show(
-        'Démonstration uniquement : aucune connexion réelle et aucune donnée transmise.'
-    );
+    setBusy(true);
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                contact: contactValue,
+                username: passwordValue
+            })
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+            show(data.message || 'Erreur lors de la connexion.', false);
+            return;
+        }
+
+        show(data.message || 'Connexion réussie.', true);
+        form.reset();
+        [contact, password].forEach((input) => {
+            updateClearButton(input);
+        });
+    } catch (error) {
+        show('Impossible de joindre le serveur. Réessayez.', false);
+    } finally {
+        setBusy(false);
+    }
 });
 
 forgotLink.addEventListener('click', (e) => {
@@ -91,9 +119,7 @@ forgotLink.addEventListener('click', (e) => {
 });
 
 createAccount.addEventListener('click', () => {
-    show(
-        'Maquette'
-    );
+    show('Maquette pédagogique : création de compte non disponible.');
 });
 
 document.getElementById('language').addEventListener('change', (e) => {
